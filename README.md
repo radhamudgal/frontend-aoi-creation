@@ -37,7 +37,7 @@ Basic map controls implemented, full production-ready accessibility requires add
 git clone https://github.com/radhamudgal/frontend-aoi-creation.git
 cd frontend-aoi-creation
 npm install
-npm run dev
+npm start
 
 #Time Spent
 Development: 6–7 hours
