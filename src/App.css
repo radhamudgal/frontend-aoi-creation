@@ -1,0 +1,25 @@
+/* Ensure main-area uses flex so sidebar and map sit side by side */
+.main-area {
+  display: flex;
+  flex: 1;       /* fill remaining height under header */
+  min-height: 0; /* allow children to scroll */
+}
+
+/* Sidebar */
+aside {
+  width: 22rem;          /* fixed sidebar width */
+  flex-shrink: 0;        /* prevent shrinking */
+}
+
+/* Map container fills remaining space */
+.map-container {
+  flex: 1;               /* take remaining width beside sidebar */
+  height: calc(100vh - 64px); /* adjust if Header height is 64px */
+  position: relative;
+}
+
+/* Leaflet map inside MapView */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
