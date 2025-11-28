@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+#AOI Creation Web App
+Project Overview
+A single-page React + TypeScript application that allows users to view satellite/drone imagery and define Areas of Interest (AOIs) with interactive map features.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#Tech Stack
+Frontend: React, TypeScript, Vite
+Styling: Tailwind CSS
+Map: Leaflet (with WMS layer from https://www.wms.nrw.de/geobasis/wms_nw_dop
+)
+Testing: Playwright
 
-Currently, two official plugins are available:
+#Map Library Choice
+Chose Leaflet because it is lightweight, highly extensible, and integrates easily with React.
+Alternatives considered: OpenLayers (heavier, more complex), MapLibre (similar to Leaflet but focused on vector tiles).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#Architecture
+Components: MapView, Sidebar, Header
+Context: MapContext for client-side state management
+Modular, maintainable code with clear separation of concerns.
 
-## React Compiler
+#Performance Considerations
+Supports 1000+ AOIs with optimized rendering.
+Debounced map events and lazy updates for drawn polygons/markers.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#Testing Strategy
+Playwright tests:
+Homepage load & title
+WMS layer tiles loaded
+AOI drawing functionality
+With more time: unit tests for custom components, layer toggle functionality, localStorage persistence.
 
-## Expanding the ESLint configuration
+#Tradeoffs
+Client-side only state management (no backend integration yet).
+Basic map controls implemented, full production-ready accessibility requires additional work.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#Setup Instructions
+git clone https://github.com/radhamudgal/frontend-aoi-creation.git
+cd frontend-aoi-creation
+npm install
+npm run dev
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+#Time Spent
+Development: 6–7 hours
+Testing: 1 hour
+Documentation: 1 hour
